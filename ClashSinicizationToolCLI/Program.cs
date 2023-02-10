@@ -115,7 +115,7 @@ namespace ClashSinicizationToolCLI
                 }
                 else
                 {
-                    Console.WriteLine("解包失败！npm文件夹检测不存在，请在TG群组求助");
+                    Console.WriteLine("解包失败！Node文件夹检测不存在，请在TG群组求助");
                 }
             }
             else
@@ -156,7 +156,7 @@ namespace ClashSinicizationToolCLI
 
                         string[] transArr = LoadTranslationScript(scriptPath);
                         //备份
-                        File.Copy(clashPath + @"\resources\app\node_modules\moment\moment.js", BackupOriginal + @"moment.js", true);
+                        File.Copy(clashPath + @"\resources\app\node_modules\moment\moment.js", BackupOriginal + @"\moment.js", true);
                         Console.WriteLine("已备份文件 " + clashPath + @"\resources\app\node_modules\moment\moment.js");
                         File.Copy("moment-with-CN.js", clashPath + @"\resources\app\node_modules\moment\moment.js", true);
                         Console.WriteLine("已替换文件 " + clashPath + @"\resources\app\node_modules\moment\moment.js");

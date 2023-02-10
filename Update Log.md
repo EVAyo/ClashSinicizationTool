@@ -1,3 +1,48 @@
+# 1.7.0
+
+* new: 新增替换工具
+* new: 新增右下角跳转TG
+* refactor: 修改还原需要关clash判断
+* refactor: 调整没有Node文件夹报错提示
+* refactor: 删除无用汉化路径
+
+# 1.6.6
+* new: 允许在"跳转到行"中按下回车键触发跳转
+* fix: 修复当翻译脚本文件输入框中文件不存在时编辑翻译脚本信息程序会报错的问题
+* fix: 修复解包已汉化 app.asar 文件后无法还原的问题
+* fix: 修复高分屏下状态栏文本内容偏移的问题
+* refactor: 重构编辑器行号显示
+* refactor: 禁用编辑器中Ctrl+滚轮的缩放操作
+* refactor: 处理窗口尺寸放大时行号宽度会增大的情况
+* refactor: 调整在启动时若存在程序更新则提示是否更新
+
+# 1.6.5
+* new: 自动load行号显示的宽度
+
+# 1.6.4
+* fix: 修复 1.6.2 及之前版本中程序路径带有空格时无法更新程序的问题
+
+# 1.6.3
+* chore: 调整在生产环境下不生成辅助文件
+* chore: 调整打包流程
+* fix: 修复升级程序窗口内文本显示为乱码的问题 [#19](https://github.com/BoyceLig/ClashSinicizationTool/pull/19)
+* fix: 修复程序会更新失败的问题
+* new: 增加行号显示布局
+
+# 1.6.2
+* 修复【BUG】查找和替换窗口布局问题和区分大小写判定问题 [#15](https://github.com/BoyceLig/ClashSinicizationTool/pull/15)
+* 修复【BUG】输入新字段时候他文字总比其它原有的小 [#16](https://github.com/BoyceLig/ClashSinicizationTool/pull/16)
+
+# 1.6.1
+* 修复上一版本首次启动程序时报错的问题
+
+# 1.6.0
+* 修正翻译脚本的下载地址
+* 补充更多翻译脚本文件镜像地址
+* 优化翻译脚本的下载
+* 修复清理失效列表按钮工作异常的问题
+* 添加支持更新程序的功能
+
 # 1.5.1
 * 为 CLI 程序添加 --output(-o) 命令拷贝文件
 

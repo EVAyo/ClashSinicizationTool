@@ -4,14 +4,14 @@ $ErrorActionPreference = 'Stop'
 Write-Host 'dotnet SDK info'
 dotnet --info
 
-$exe = @('Clash Sinicization Tool.exe', 'CLI.exe')
+$exe = @('Clash Sinicization Tool.exe', 'Upgrade.exe')
 $net_tfm = 'net6.0-windows'
 $dllpatcher_tfm = 'net6.0'
 $configuration = 'Release'
-$output_dir = @("$PSScriptRoot\ClashSinicizationTool\bin\$configuration", "$PSScriptRoot\ClashSinicizationToolCLI\bin\$configuration")
+$output_dir = @("$PSScriptRoot\ClashSinicizationTool\bin\$configuration", "$PSScriptRoot\ClashSinicizationToolUpgrade\bin\$configuration")
 $dllpatcher_dir = "$PSScriptRoot\Build\DotNetDllPathPatcher"
 $dllpatcher_exe = "$dllpatcher_dir\bin\$configuration\$dllpatcher_tfm\DotNetDllPathPatcher.exe"
-$proj_path = @("$PSScriptRoot\ClashSinicizationTool\ClashSinicizationTool.csproj", "$PSScriptRoot\ClashSinicizationToolCLI\ClashSinicizationToolCLI.csproj")
+$proj_path = @("$PSScriptRoot\ClashSinicizationTool\ClashSinicizationTool.csproj", "$PSScriptRoot\ClashSinicizationToolUpgrade\ClashSinicizationToolUpgrade.csproj")
 $dist_path = "$PSScriptRoot\Dist\$configuration"
 
 $build    = $buildtfm -eq 'all' -or $buildtfm -eq 'app'

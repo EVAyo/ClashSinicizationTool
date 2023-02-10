@@ -3,6 +3,7 @@ on:
   push:
     tags:
       - '*.*.*'
+  workflow_dispatch:
 env:
   ProjectName: ClashSinicizationTool
 
@@ -55,7 +56,10 @@ jobs:
         New-Item -ItemType Directory -Path C:\builtfiles -Force > $null
         7z a -mx9 "C:\builtfiles\$env:ProjectName-${{ steps.tag.outputs.tag }}.7z" ".\Dist\$env:Configuration\"
         7z rn "C:\builtfiles\$env:ProjectName-${{ steps.tag.outputs.tag }}.7z" $env:Configuration $env:ProjectName
-        echo "NET_SHA256=$(.\Build\GetSHA256\GetSHA256.ps1 C:\builtfiles\$env:ProjectName-${{ steps.tag.outputs.tag }}.7z)" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
+        echo "NET_SHA256_7z=$(.\Build\GetSHA256\GetSHA256.ps1 C:\builtfiles\$env:ProjectName-${{ steps.tag.outputs.tag }}.7z)" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
+        Copy-Item -Path ".\Dist\$env:Configuration\" -Destination ".\Dist\$env:ProjectName\" -Recurse -Force
+        Compress-Archive -Path ".\Dist\$env:ProjectName\" "C:\builtfiles\$env:ProjectName-${{ steps.tag.outputs.tag }}.zip"
+        echo "NET_SHA256_zip=$(.\Build\GetSHA256\GetSHA256.ps1 C:\builtfiles\$env:ProjectName-${{ steps.tag.outputs.tag }}.zip)" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
     - name: Create a new GitHub release if a new tag is pushed
       uses: ncipollo/release-action@v1
       if: ${{ github.event_name == 'push' && startsWith(github.ref, 'refs/tags/') }}
@@ -67,13 +71,20 @@ jobs:
         artifacts: C:\builtfiles\*
         body: |
           [![](https://img.shields.io/badge/Channel-blue?label=Telegram&logo=telegram)](https://t.me/ClashR_for_Windows_Channel) [![](https://img.shields.io/badge/Group-green?label=Telegram&logo=telegram)](https://t.me/+Se4RSc06w8QK1HiS)
+          
           ## 更新日志：
+          
           * 这是 GitHub Action 自动化部署，更新日志应该很快会手动更新
+          
           [net6.0 Core 下载地址](https://dotnet.microsoft.com/download/dotnet/6.0/runtime)
+          
           ## 文件校验
+          
           | 文件名 | SHA256 |
           | :- | :- |
-          | <sub>${{ env.ProjectName }}-${{ steps.tag.outputs.tag }}.7z</sub> | <sub>${{ env.NET_SHA256 }}</sub> |          
+          | <sub>${{ env.ProjectName }}-${{ steps.tag.outputs.tag }}.7z</sub> | <sub>${{ env.NET_SHA256_7z }}</sub> |
+          | <sub>${{ env.ProjectName }}-${{ steps.tag.outputs.tag }}.zip</sub> | <sub>${{ env.NET_SHA256_zip }}</sub> |
+
           ## 相关推荐：
 
           ### 相关推荐1：OK加速
